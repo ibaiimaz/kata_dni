@@ -1,0 +1,15 @@
+/bin/
+/out/
+.gradle
+build
+.classpath
+.settings
+.project
+*.iws
+*.ipr
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
