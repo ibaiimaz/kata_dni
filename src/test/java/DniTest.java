@@ -31,4 +31,13 @@ public class DniTest {
 
         assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Ends with number");
     }
+
+    @Test
+    void should_fail_when_dni_ends_with_an_invalid_letter() {
+        Throwable thrown = catchThrowable(() -> {
+            Dni dni = new Dni("01234567I");
+        });
+
+        assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Ends with invalid letter");
+    }
 }
