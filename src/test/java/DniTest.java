@@ -13,4 +13,13 @@ public class DniTest {
 
         assertThat(thrown).isInstanceOf(LengthException.class).hasMessageContaining("Too long");
     }
+
+    @Test
+    void should_fail_when_dni_shorter_than_min_length() {
+        Throwable thrown = catchThrowable(() -> {
+            Dni dni = new Dni("01234567");
+        });
+
+        assertThat(thrown).isInstanceOf(LengthException.class).hasMessageContaining("Too short");
+    }
 }
