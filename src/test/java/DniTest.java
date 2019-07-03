@@ -11,7 +11,7 @@ public class DniTest {
             Dni dni = new Dni("0123456789");
         });
 
-        assertThat(thrown).isInstanceOf(LengthException.class).hasMessageContaining("Too long");
+        assertThat(thrown).isInstanceOf(LengthException.class);
     }
 
     @Test
@@ -20,6 +20,15 @@ public class DniTest {
             Dni dni = new Dni("01234567");
         });
 
-        assertThat(thrown).isInstanceOf(LengthException.class).hasMessageContaining("Too short");
+        assertThat(thrown).isInstanceOf(LengthException.class);
+    }
+
+    @Test
+    void should_fail_when_dni_ends_with_a_number() {
+        Throwable thrown = catchThrowable(() -> {
+            Dni dni = new Dni("012345678");
+        });
+
+        assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Ends with number");
     }
 }
