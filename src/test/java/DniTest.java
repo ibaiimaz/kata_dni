@@ -49,4 +49,13 @@ public class DniTest {
 
         assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Has letters in the middle");
     }
+
+    @Test
+    void should_fail_when_dni_starts_with_a_letter_other_than_XYZ() {
+        Throwable thrown = catchThrowable(() -> {
+            new Dni("A1234567R");
+        });
+
+        assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Starts with invalid letter");
+    }
 }

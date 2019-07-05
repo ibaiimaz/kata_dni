@@ -14,7 +14,11 @@ public class Dni {
             throw new DomainException("Ends with invalid letter");
         }
 
-        throw new DomainException("Has letters in the middle");
+        if (!dni.matches("^.\\d{7}.$")) {
+            throw new DomainException("Has letters in the middle\"");
+        }
+
+        throw new DomainException("Starts with invalid letter");
     }
 
     private void checkDniHasValidLength(String dni) throws LengthException {
