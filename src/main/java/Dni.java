@@ -10,7 +10,11 @@ public class Dni {
             throw new DomainException("Ends with number");
         }
 
-        throw new DomainException("Ends with invalid letter");
+        if (dni.matches("^.*[UIOÑ]$")) {
+            throw new DomainException("Ends with invalid letter");
+        }
+
+        throw new DomainException("Has letters in the middle");
     }
 
     private void checkDniHasValidLength(String dni) throws LengthException {

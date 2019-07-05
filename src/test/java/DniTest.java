@@ -40,4 +40,13 @@ public class DniTest {
 
         assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Ends with invalid letter");
     }
+
+    @Test
+    void should_fail_when_dni_has_letters_in_the_middle() {
+        Throwable thrown = catchThrowable(() -> {
+            new Dni("012AB567R");
+        });
+
+        assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Has letters in the middle");
+    }
 }
