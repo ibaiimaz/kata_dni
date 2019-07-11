@@ -3,7 +3,7 @@ public class Dni {
 
     public static final int VALID_LENGTH = 9;
 
-    public Dni(String dni) throws LengthException, DomainException {
+    public Dni(String dni) throws LengthException, DomainException, InvalidArgumentException {
         checkDniHasValidLength(dni);
 
         if (dni.matches("^.*\\d$")) {
@@ -18,12 +18,16 @@ public class Dni {
             throw new DomainException("Has letters in the middle\"");
         }
 
-        throw new DomainException("Starts with invalid letter");
+        if (!dni.matches("^[XYZ0-9].*")) {
+            throw new DomainException("Starts with invalid letter");
+        }
+
+        throw new InvalidArgumentException("Invalid dni");
     }
 
     private void checkDniHasValidLength(String dni) throws LengthException {
         if (dni.length() != VALID_LENGTH) {
-            throw new LengthException("Invalid length");
+            throw new LengthException("Too long or too short");
         }
     }
 }

@@ -58,4 +58,13 @@ public class DniTest {
 
         assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Starts with invalid letter");
     }
+
+    @Test
+    void should_fail_when_invalid_dni() {
+        Throwable thrown = catchThrowable(() -> {
+            new Dni("00000000S");
+        });
+
+        assertThat(thrown).isInstanceOf(InvalidArgumentException.class).hasMessageContaining("Invalid dni");
+    }
 }
