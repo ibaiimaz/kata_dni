@@ -11,7 +11,7 @@ public class DniTest {
             new Dni("0123456789");
         });
 
-        assertThat(thrown).isInstanceOf(LengthException.class);
+        assertThat(thrown).isInstanceOf(DomainException.class);
     }
 
     @Test
@@ -20,7 +20,7 @@ public class DniTest {
             new Dni("01234567");
         });
 
-        assertThat(thrown).isInstanceOf(LengthException.class);
+        assertThat(thrown).isInstanceOf(DomainException.class);
     }
 
     @Test
@@ -29,7 +29,6 @@ public class DniTest {
             new Dni("012345678");
         });
 
-        assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Ends with number");
     }
 
     @Test
@@ -38,7 +37,7 @@ public class DniTest {
             new Dni("01234567I");
         });
 
-        assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Ends with invalid letter");
+        assertThat(thrown).isInstanceOf(DomainException.class);
     }
 
     @Test
@@ -47,7 +46,7 @@ public class DniTest {
             new Dni("012AB567R");
         });
 
-        assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Has letters in the middle");
+        assertThat(thrown).isInstanceOf(DomainException.class);
     }
 
     @Test
@@ -56,7 +55,7 @@ public class DniTest {
             new Dni("A1234567R");
         });
 
-        assertThat(thrown).isInstanceOf(DomainException.class).hasMessageContaining("Starts with invalid letter");
+        assertThat(thrown).isInstanceOf(DomainException.class);
     }
 
     @Test
@@ -65,6 +64,6 @@ public class DniTest {
             new Dni("00000000S");
         });
 
-        assertThat(thrown).isInstanceOf(InvalidArgumentException.class).hasMessageContaining("Invalid dni");
+        assertThat(thrown).isInstanceOf(InvalidArgumentException.class);
     }
 }
