@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -65,5 +68,13 @@ public class DniTest {
         });
 
         assertThat(thrown).isInstanceOf(InvalidArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"00000000T","00000001R","00000002W"})
+    void should_construct_valid_dni_ending_with_letter(String dniNumber) throws DomainException, InvalidArgumentException {
+        Dni dni = new Dni(dniNumber);
+
+        assertThat(dni.toString()).isEqualTo(dniNumber);
     }
 }
