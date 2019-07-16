@@ -5,7 +5,9 @@ import static java.lang.Integer.parseInt;
 
 public class Dni {
 
-    public static final String VALID_DNI_PATTERN = "^[XYZ\\d]\\d{7}[^UIOÑ\\d]$";
+    private static final String VALID_DNI_PATTERN = "^[XYZ\\d]\\d{7}[^UIOÑ\\d]$";
+    private static final String CONTROL_LETTER_MAP = "TRWAGMYFPDXBNJZSQVHLCKE";
+
     private String dni;
 
     public Dni(String dni) throws DomainException, InvalidArgumentException {
@@ -22,7 +24,7 @@ public class Dni {
             put(2, "W");
         }};
 
-        if (!letter.equals(map.get(mod))) {
+        if (!letter.equals(String.valueOf(CONTROL_LETTER_MAP.charAt(mod)))) {
             throw new InvalidArgumentException("Invalid dni");
         }
 
